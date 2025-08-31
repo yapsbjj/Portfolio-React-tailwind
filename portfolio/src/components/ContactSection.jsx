@@ -4,7 +4,13 @@ import { cn } from "../lib/utils"
 
 export const ContactSection = () => {
 
+const handleSUBMIT = (e) => {
+    e.preventDefault()
 
+    setTimeout(() => {
+        
+    }, 1500)
+}
 
 
     return <section id="contact" className="py-24 px-4 relative bg-secondary/30">
