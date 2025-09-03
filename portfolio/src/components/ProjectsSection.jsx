@@ -3,12 +3,12 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
     {
       id: 1,
-      title: "Project 1",
-      description: "description 1",
+      title: "E Learning Project",
+      description: "This is a e-learning website made with MERN technologies",
       image: "/projects/imageProject1.png",
       tags: ["React", "Tailwind", "MongoDB"],
-      demoUrl: "#",
-      githubUrl: "#",  
+      demoUrl: "https://knowledgefrontend.vercel.app/",
+      githubUrl: "https://github.com/yapsbjj/MERN-e-learning-project",  
     },
 
     {
@@ -49,7 +49,7 @@ export const ProjectsSection = () => {
                     key={key} 
                     className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover">
                         <div className="h-48 overflow-hidden">
-                            <img src={projects.image} alt={projects.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                            <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
                         </div>
 
                         <div className="p-6 ">
@@ -94,7 +94,7 @@ export const ProjectsSection = () => {
             </div>
 
             <div className="text-center mt-12">
-                <a href="lien Github"
+                <a href="https://github.com/yapsbjj"
                 target="_blank"
                 className="cosmic-button w-fit flex items-center mx-auto gap-2">
                     Check My Github <ArrowRight size={16} />
