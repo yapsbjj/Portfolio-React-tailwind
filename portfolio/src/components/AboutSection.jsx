@@ -1,6 +1,5 @@
 import { Briefcase, Code, User } from "lucide-react"
 
-
 export const AboutSection = () => {
     return <section id="about" className="py-24 px-4 relative">
         {" "}
@@ -16,6 +15,10 @@ export const AboutSection = () => {
             <h3 className="text-2xl font-semibold">Passionate MERN Developper & Tech Creator </h3>
 
             <p className="text-muted-foreground">
+                With 17 years of experience in some of the most prestigious hotels and restaurants in Paris, 
+                I have developed strong discipline, a service-oriented mindset, and great adaptability. 
+                Driven by the desire to take on new challenges, I decided to transition into web development.
+                 Curious, self-motivated, and a fast learner, I quickly put new skills into practice and am eager to grow in this field.
                 Came from the school in web development, 
                 I'm specialize in MERN fullStack website developpement, 
                 accessible and performant web applications using modern technologies. 
@@ -34,9 +37,19 @@ export const AboutSection = () => {
                     Get in touch
                 </a>
 
-                 <a href="" className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300">
-                    Download C.V
-                </a>
+                <button
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = "/Cv.pdf"; // fichier placé dans /public
+                    link.download = "Mon-CV.pdf"; // nom du fichier final
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                  className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+                >
+                  Download C.V
+                </button>
 
             </div>
 
