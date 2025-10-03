@@ -11,7 +11,12 @@ export const HeroSection = () => {
                 </h1>
 
                 <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3 ">
-                    paragraphe de présentation à completer</p>
+                     With 17 years of experience in some of the most prestigious hotels and restaurants in Paris, 
+                I have developed strong discipline, a service-oriented mindset, and great adaptability. 
+                Driven by the desire to take on new challenges, I decided to transition into web development. Curious, self-motivated, and a fast learner, I quickly put new skills into practice and am eager to grow in this field.
+                Came from the school in web development, 
+                I'm specialize in MERN fullStack website developpement, 
+                accessible and performant web applications using modern technologies.</p>
 
                     <div className="pt-4 opacity-0 animate-fade-in-delay-4">
                         <a href="#projects" className="cosmic-button">

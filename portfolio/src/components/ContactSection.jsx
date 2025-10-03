@@ -2,11 +2,10 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide
 import { cn } from "../lib/utils";
 import { useToast } from '@/hooks/use-toast';
 import { useState } from "react";
-
+import emailjs from '@emailjs/browser';
 
 export const ContactSection = () => {
-
-    const {toast} = useToast();
+    const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -17,31 +16,33 @@ export const ContactSection = () => {
         const data = Object.fromEntries(formData);
 
         try {
-            const res = await fetch("http://localhost:5000/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
+            const result = await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: data.name,
+                    from_email: data.email,
+                    message: data.message,
+                    to_name: 'Yassine',
+                    reply_to: data.email,
+                },
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
 
-            const result = await res.json();
-
-            if (res.ok) {
+            if (result.status === 200) {
                 toast({
                     title: "Message envoyé ✅",
-                    description: "Thank you for your message, i'll answer very soon.",
+                    description: "Thank you for your message, I'll answer very soon.",
                 });
                 e.target.reset();
             } else {
-                toast({
-                    title: "Erreur ❌",
-                    description: result.error || "impossible send message",
-                    variant: "destructive",
-                });
+                throw new Error('Failed to send email');
             }
         } catch (err) {
+            console.error('EmailJS Error:', err);
             toast({
-                title: "Erreur serveur ⚠️",
-                description: "Check your network and retry later",
+                title: "Erreur ❌",
+                description: "Impossible d'envoyer le message. Veuillez réessayer.",
                 variant: "destructive",
             });
         } finally {
@@ -109,9 +110,9 @@ export const ContactSection = () => {
                             <h4 className="font-medium mb-4">Connect with me</h4>
                             <div className="flex space-x-4 justify-center">
                                 <a href="https://fr.linkedin.com/in/yassine-ramdane-12845a160?trk=people-guest_people_search-card" 
-                                   target="_blank"><Linkedin/></a>
-                                <a href="https://www.instagram.com/_yaps_rmdne/?hl=fr" target="_blank"><Instagram/></a>
-                                <a href="https://www.facebook.com/yassine.ramdane" target="_blank"><Facebook/></a>
+                                   target="_blank" rel="noopener noreferrer"><Linkedin/></a>
+                                <a href="https://www.instagram.com/_yaps_rmdne/?hl=fr" target="_blank" rel="noopener noreferrer"><Instagram/></a>
+                                <a href="https://www.facebook.com/yassine.ramdane" target="_blank" rel="noopener noreferrer"><Facebook/></a>
                             </div>
                         </div>
                     </div>
@@ -151,6 +152,7 @@ export const ContactSection = () => {
                                     id="message" 
                                     name="message"  
                                     required 
+                                    rows="5"
                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                                     placeholder="Your message"
                                 />
@@ -159,7 +161,9 @@ export const ContactSection = () => {
                             <button 
                                 type="submit"
                                 disabled={isSubmitting}
-                                className={cn("cosmic-button w-full flex items-center justify-center gap-2")}
+                                className={cn("cosmic-button w-full flex items-center justify-center gap-2", {
+                                    "opacity-50 cursor-not-allowed": isSubmitting
+                                })}
                             >
                                 {isSubmitting ? "Sending..." : "Send message"}
                                 <Send size={16}/>
