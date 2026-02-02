@@ -17,7 +17,7 @@ const projects = [
       description: "e-commerce website made for my DWWM test with MERN technologies",
       image: "/projects/imageProject2.png",
       tags: ["React", "Tailwind", "MongoDB"],
-      demoUrl: "forever-ecommerce-red.vercel.app",
+      demoUrl: "https://forever-ecommerce-red.vercel.app/",
       githubUrl: "https://github.com/yapsbjj/ForeverEcommerce", 
       
     },
