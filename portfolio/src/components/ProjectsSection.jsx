@@ -13,12 +13,13 @@ const projects = [
 
     {
       id: 2,
-      title: "Project 2",
-      description: "description 1",
+      title: "Forever",
+      description: "e-commerce website made for my DWWM test with MERN technologies",
       image: "/projects/imageProject2.png",
       tags: ["React", "Tailwind", "MongoDB"],
-      demoUrl: "#",
-      githubUrl: "#",  
+      demoUrl: "forever-ecommerce-red.vercel.app",
+      githubUrl: "https://github.com/yapsbjj/ForeverEcommerce", 
+      
     },
 
     {
